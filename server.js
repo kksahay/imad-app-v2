@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 var articles={
- 'article-one' :{
+ articleOne :{
   title: "Article one | Kunal Sahay",
   heading: "Article one",
   content:
@@ -27,7 +27,7 @@ var articles={
             </p>`
   
 },
- 'article-two':{
+ articleTwo:{
   title: "Article two | Kunal Sahay",
   heading: "Article two",
   content:
@@ -79,9 +79,6 @@ app.get('/:articleName',function(req,res){
    res.send(createTemplate(articles(articleName)));
 });
     
-app.get('/article-two',function(req,res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
 
 
 
