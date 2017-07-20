@@ -8,8 +8,8 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-
-var articleOne ={
+var articles={
+ 'article-one' :{
   title: "Article one | Kunal Sahay",
   heading: "Article one",
   content:
@@ -26,8 +26,20 @@ var articleOne ={
                 Contents
             </p>`
   
-};
+},
+ 'article-two':{
+  title: "Article two | Kunal Sahay",
+  heading: "Article two",
+  content:
+            `<p>
+                Contents
+            </p>
+            <p>
+                Contents
+            </p>`
+ }
 
+};
 function createTemplate(data){
     var title=data.title;
     var heading=data.heading;
@@ -62,8 +74,9 @@ var htmlTemplate=
 return htmlTemplate
 }
 
-app.get('/article-one',function(req,res){
-   res.send(createTemplate(articleOne));
+app.get('/:articleName',function(req,res){
+    var articleName=req.params.articleName;
+   res.send(createTemplate(articles(articleName)));
 });
     
 app.get('/article-two',function(req,res){
